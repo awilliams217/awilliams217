@@ -1,0 +1,103 @@
+// CS445Assignment1.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <iomanip> 
+#include <fstream>
+#define n 100
+
+using namespace std;
+
+int main()
+{
+    double A1, A2, a, total;
+    total = 0;
+    double num0, num1, num2, num3, num4, num5, num6, num7, num8, num9;
+    double b[n];
+    a = 0.0000001;
+    for (int i = 0; i < n; ++i)
+    {
+        b[i] = (1.0 / (10000000 * (rand() + 1) * (rand() + 1) * (rand() + 1)));
+    }
+    A1 = 0.0;
+    for (int i = 0; i < n; ++i)
+    {
+        A1 = A1 + a * b[i];
+    }
+    A2 = 0.0;
+    for (int i = 0; i < n; ++i)
+    {
+        A2 = A2 + b[i];
+    }
+    A2 = A2 * a;
+    for (int i = 0; i < n / 10; i++)
+    {
+        cout << "The array of numbers generated is " << b[i] << endl;
+        if (i == 0)
+        {
+            num0 = b[i];
+        }
+        if (i == 1)
+        {
+            num1 = b[i];
+        }
+        if (i == 2)
+        {
+            num2 = b[i];
+        }
+        if (i == 3)
+        {
+            num3 = b[i];
+        }
+        if (i == 4)
+        {
+            num4 = b[i];
+        }
+        if (i == 5)
+        {
+            num5 = b[i];
+        }
+        if (i == 6)
+        {
+            num6 = b[i];
+        }
+        if (i == 7)
+        {
+            num7 = b[i];
+        }
+        if (i == 8)
+        {
+            num8 = b[i];
+        }
+        if (i == 9)
+        {
+            num9 = b[i];
+        }
+    }
+    total = A2 - A1;
+    cout << "A1 is " << setprecision(15) << A1 << endl;
+    cout << "A2 is " << setprecision(15) << A2 << endl;
+    cout << "The difference between A1 and A2 is " << total << endl;
+
+    ofstream myfile;
+    myfile.open("cs445.txt");
+    myfile << "This is the beginning of the file" << endl;
+    myfile << "The first array number randomly generated is: " << num0 << endl;
+    myfile << "The second array number randomly generated is: " << num1 << endl;
+    myfile << "The third array number randomly generated is: " << num2 << endl;
+    myfile << "The fourth array number randomly generated is: " << num3 << endl;
+    myfile << "The fifth array number randomly generated is: " << num4 << endl;
+    myfile << "The sixth array number randomly generated is: " << num5 << endl;
+    myfile << "The seventh array number randomly generated is: " << num6 << endl;
+    myfile << "The eigth array number randomly generated is: " << num7 << endl;
+    myfile << "The ninth array number randomly generated is: " << num8 << endl;
+    myfile << "The tenth array number randomly generated is: " << num9 << endl;
+    myfile << "A1 is: " << setprecision(15) << A1 << endl;
+    myfile << "A2 is: " << setprecision(15) << A2 << endl;
+    myfile << "The difference between A1 and A2 is: " << setprecision(15) << total << endl;
+    myfile.close();
+    system("pause");
+
+    return 0;
+}
+
