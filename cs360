@@ -1,0 +1,15 @@
+def area(l,w):
+return l*w
+def fact(n):
+if n == 1:
+return n
+else:
+return n*fact(n-1)
+print("Enter the length of the rectangle: ")
+length = int(input())
+print("Enter the width of the rectangle: ")
+width = int(input())
+print("The area of the rectangle is: ", area (length,width))
+print("Enter the number for the factorial:")
+number = int(input())
+print("The factorial is: ", fact(number))
