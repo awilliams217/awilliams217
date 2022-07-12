@@ -1,0 +1,37 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Permutations {
+    public static void main(String[] args){
+        Permutations p=new Permutations();
+        int[] s= {1,2,3,4};
+        List<List<Integer>> permute = p.permute(s);
+        System.out.println("the permutations of [1,2,3,4] are:");
+        for(List<Integer> result:permute)
+        {
+            System.out.println(result);
+        }
+    }
+    public List<List<Integer>> permute(int[] s){
+        List<List<Integer>> list = new ArrayList<>();
+        howManyRecursion(list, new ArrayList<>(), s);
+        return list;
+    }
+    private void howManyRecursion(List<List<Integer>>list, List<Integer> r, int[] s){
+    if(r.size() == s.length){
+        list.add(new ArrayList<>(r));
+    }
+    else{
+        for(int i =0; i < s.length; i++){
+            if(r.contains(s[i]))
+            {
+                continue;
+            }
+            r.add(s[i]);
+            howManyRecursion(list, r, s);
+            r.remove(r.size() - 1);
+        }
+    }
+    }
+}
