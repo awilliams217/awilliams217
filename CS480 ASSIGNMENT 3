@@ -1,0 +1,159 @@
+import java.util.ArrayList; //Import ArrayList
+import java.util.HashMap; //Import HashMap
+import java.util.HashSet; //Import HashSet
+import java.util.Arrays;
+import java.util.List;
+public class Main {
+static ArrayList question1(ArrayList<Integer> a, int t) {
+ArrayList<Integer> result = new ArrayList<Integer>();
+HashMap<Integer, Integer> mp = new HashMap<Integer, Integer>();
+for (int i = 0; i < a.size(); i++) {
+if (mp.get(t - a.get(i)) != null) {
+result.add(a.get(i));
+result.add(a.get(mp.get(t - a.get(i))));
+mp.remove(t - a.get(i));
+} else {
+mp.put(a.get(i), i);
+}
+}
+return result;
+}
+static ArrayList question2(ArrayList<Integer> a, int t) {
+ArrayList<Integer> result = new ArrayList<Integer>();
+for (int i = 0; i < a.size(); i++) {
+HashSet<Integer> s = new HashSet<Integer>();
+int sum = t - a.get(i);
+for (int j = i + 1; j < a.size(); j++) {
+if (s.contains(sum - a.get(j))) {
+result.add(a.get(i));
+result.add(a.get(j));
+result.add(sum - a.get(j));
+s.remove(sum - a.get(j));
+} else {
+s.add(a.get(j));
+}
+}
+}
+return result;
+}
+static ArrayList question3(ArrayList<Integer> a, int size, int sum) {
+ArrayList<Integer> res = new ArrayList<Integer>();
+if (sum == 0) {
+return new ArrayList();
+} if (
+size == 0
+&& sum != 0) {
+return null;
+}
+if (a.get(size - 1) > sum) {
+return question3(a, size - 1, sum);
+}
+ArrayList<Integer> a1 = new ArrayList<Integer>();
+a1 = question3(a, size - 1, sum);
+if (a1 == null) {
+ArrayList<Integer> a2 = new ArrayList<Integer>();
+a1 = question3(a, size - 1, (sum - a.get(size - 1)));
+if (a2 == null) {
+return null;
+} else {
+System.out.println(a2.toString());
+System.out.println(a.get(size - 1));
+res.addAll(a2);
+res.add(a.get(size - 1));
+return res;
+}
+} else {
+return a1;
+}
+}
+public static void main(String[] args) {
+ArrayList<Integer> test1 = new ArrayList<Integer>();
+test1.add(2);
+test1.add(7);
+test1.add(11);
+test1.add(15);
+int t = 9;
+ArrayList<Integer> res = question1(test1, t);
+System.out.println("Two Numbers that add up to " + t + " from " + test1.toString() + " are: ");
+if (!res.isEmpty()) {
+System.out.println(res.toString() + "\n");
+} else {
+System.out.println("Unsuccessful\n");
+}
+ArrayList<Integer> test2 = new ArrayList<Integer>();
+test2.add(1);
+test2.add(4);
+test2.add(45);
+test2.add(6);
+test2.add(10);
+test2.add(8);
+t = 50;
+res = question2(test2, t);
+System.out.println("Three Numbers that add up to " + t + " from " + test2.toString() + " are:
+");
+if (!res.isEmpty()) {
+System.out.println(res.toString() + "\n");
+} else {
+System.out.println("Unsuccessful\n");
+}
+ArrayList<Integer> test3 = new ArrayList<Integer>();
+test3.add(2);
+test3.add(1);
+test3.add(4);
+test3.add(12);
+test3.add(15);
+test3.add(2);
+int size = test3.size();
+int sum = 9;
+ArrayList<Integer> result = new ArrayList<Integer>();
+result = question3(test3, size, sum);
+if (!result.isEmpty()) {
+System.out.println(result.toString() + "\n");
+} else {
+System.out.println("Unsuccessful\n");
+}
+}
+}
+/**
+static ArrayList question1(ArrayList<Integer> a, int t) {
+* ArrayList<Integer> result = new ArrayList<Integer>();
+* int y = 0;
+* int z = 0;
+**
+for (int i = 0; i < a.size(); i++) {
+* for (int j = 0; j < a.size(); j++) {
+* if (a.get(j) == t - a.get(i)) {
+* y = a.get(i);
+* z = a.get(j);
+* break;
+* }
+* }
+* }
+* result.add(y);
+* result.add(z);
+***
+return result;
+* }
+*/
+// static void question3(ArrayList<Integer> a, int t, ArrayList<Integer> b) {
+// int sum = 0;
+// for (int i = 0; i < a.size(); i++) {
+// sum += a.get(i);
+// }
+// if (sum == t) {
+// System.out.println(a.toString());
+// return;
+// }
+// List<Integer> aList = new ArrayList<Integer>(Arrays.asList(a));
+// List<Integer> bList = new ArrayList<Integer>(Arrays.asList(b));
+// for (int i : aList) {
+// if (!bList.contains(i)) {
+// b.add(i);
+// ArrayList<Integer> a1 = new ArrayList<>(a);
+// ArrayList<Integer> b1 = new ArrayList<>(b);
+// a.add(i);
+// question3(a, t, b);
+// question3(a1, t, b1);
+// }
+// }
+// }
