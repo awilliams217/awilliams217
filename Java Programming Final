@@ -1,0 +1,104 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+//Alexandria Williams Final 
+import java.util.*;
+
+class Answer{
+    public static void main(String[] args) {
+        ArrayList<ArrayList <Integer>> P = new ArrayList<ArrayList<Integer>>(8);
+
+        for(Integer x = 0; x < 8; x++) {
+            ArrayList<Integer> buffer = new aArrayList<Integer>(8);
+
+            for(Integer y = 0; y < 8; ++y) {
+                buffer.add(0);
+            }
+
+            P.add(buffer);
+        }
+//variables x and y
+        P.get(0).set(1, 1);
+        permutations(P);
+    }
+
+    public static void permutations(ArrayList<ArrayList<Integer>> P) {
+        int howmanyQueen = 0;
+
+        for(Integer x = 0; x < 8; ++x){
+            for(Integer y = 0; y < 8; ++y){
+                howmanyQueen += P.get(x).get(y);
+            }
+        }
+//if statement
+        if(howmanyQueen == 8){
+            for(Integer x = 0; x < 8; ++x){
+                for(Integer y = 0; y < 8; ++y){
+                    System.out.print(P.get(i).get(j));
+                }
+                System.out.println(" ");
+            }
+            System.out.print("\n");
+            
+            return;
+        }
+// add variables r and p 
+        int queenInthisRow;
+        int r = 0;
+
+        for(Integer x = 0; x < 8; ++x){
+            queenInthisRow = 0;
+//double check this line- note to self
+            for(Integer y = 0; y < 8; ++y){
+                queenInthisRow += P.get(i).get(y);
+            }
+            if(queenInthisRow == 0){
+                r = x;
+                break;
+            }
+        }
+//array
+        ArrayList<Integer> R = new ArrayList<Integer>();
+        
+        for(int x = 0; x < 8; ++x){
+            if(attacking(r, x, P) == false) 
+                R.add(x);
+        }
+//howManyRecursion
+        Integer howManyRecursion = R.size();
+
+        if(R.size() == 0) 
+            return;
+
+        for(Integer x = 0; x < howManyRecursion; ++x){
+            ArrayList<ArrayList <Integer>> P_copy = new ArrayList<ArrayList<Integer>>(8);
+            P_copy.addAll(P);
+            P_copy.get(r).set(R.get(x), 1);
+            permutations(P_copy);
+            P_copy.get(r).set(R.get(x), 0);
+        }
+    }
+//boolean
+    public static boolean attacking(int r, int c, ArrayList<ArrayList<Integer>> P){
+        for (int x = 0; x < r; x++) {
+            if (P.get(x).get(c) == 1) 
+                return true;
+        }
+//for loop statement 
+        for (int x = r, y = c; y < P.size() && i >= 0; i--, j++) {
+            if (P.get(x).get(y) == 1) 
+                return true;
+        }
+
+        for (int x = r, y = c; x >= 0 && y >= 0; x--, y--) {
+            if (P.get(x).get(y) == 1) 
+                return true;
+        }
+//returnstatement 
+        return false;
+    }
+}
