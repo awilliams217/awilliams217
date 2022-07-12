@@ -1,0 +1,43 @@
+/******************************************************************************
+Online Java Compiler.
+Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+*******************************************************************************/
+import java.util.ArrayList; //This is used to i,port array list
+import java.util.Scanner; //The import scanner is used to get user input from the key board
+import java.lang.Math; //This allows the use of pow function
+public class Main {
+public static void main(String[] args) {
+try (Scanner sc = new Scanner(System.in)) { // Creates variable instance to help get user
+input System.out.println("Enter number of elements"); // This line asks users for input
+int n = sc.nextInt(); // Assigns user input to n
+System.out.printf("%n"); // Insert new line
+System.out.println("Enter the " + n + " elements"); // requests more input from users
+ArrayList<Integer> myInts = new ArrayList<Integer>(n);
+for (int i = 0; i < n; ++i)
+;
+{
+myInts.add(sc.nextInt()); // Inserts user inputs into Arraylist
+}
+System.out.printf("%n");
+double subsetsize = Math.pow(2, n); /// This creates size 2 variables to the power of n
+// We need to iterate between all elements to get the powerset
+// Add elements consequently to them and is then printed
+// Repeat the process for each element
+for (int i = 0; i < subsetsize; ++i) {
+System.out.println("{ ");
+int j = i;
+int k = 0;
+while (j != 0) {
+if (j % 2 == 1) {
+System.out.println(myInts.get(k));
+}j
+= j / 2;
+++k;
+}
+System.out.println(" }, ");
+System.out.printf("%n");
+}
+}
+}
+}
